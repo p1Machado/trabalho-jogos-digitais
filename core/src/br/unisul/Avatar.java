@@ -4,6 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 
+import static br.unisul.Directions.DOWN;
+import static br.unisul.Directions.LEFT;
+import static br.unisul.Directions.RIGHT;
+import static br.unisul.Directions.UP;
+
 public class Avatar extends Actor {
 
     public Avatar(MyGdxGame game, float x, float y, Texture texture) {

@@ -13,12 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import br.unisul.behaviors.FollowUpBehavior;
+import br.unisul.behaviors.RandomBehavior;
+
 public class MyGdxGame extends ApplicationAdapter {
 
     public Random rand = new Random();
     public int maxWidth, maxHeight;
     SpriteBatch batch;
-    Actor avatar;
+    public Avatar avatar;
     Texture avatarTexture;
     Texture monsterTexture;
     private Texture industrialTexture;
@@ -39,8 +42,13 @@ public class MyGdxGame extends ApplicationAdapter {
         avatar = new Avatar(this, 200, 200, avatarTexture);
         actors.add(avatar);
         for (int i = 0; i < 10; i++) {
-            actors.add(new Monster(this, rand.nextInt(700), rand.nextInt(500), monsterTexture));
+            Monster monster = new Monster(this, rand.nextInt(700), rand.nextInt(500), monsterTexture);
+            monster.setBehavior(new RandomBehavior(this, monster));
+            actors.add(monster);
         }
+        Monster followMonster = new Monster(this, rand.nextInt(700), rand.nextInt(500), monsterTexture);
+        followMonster.setBehavior(new FollowUpBehavior(this, followMonster));
+        actors.add(followMonster);
         font = new BitmapFont(
                 Gdx.files.internal("verdana.fnt"),
                 Gdx.files.internal("verdana.png"), false);

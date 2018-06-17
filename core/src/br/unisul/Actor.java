@@ -5,12 +5,12 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
 
-public abstract class Actor {
+import static br.unisul.Directions.DOWN;
+import static br.unisul.Directions.LEFT;
+import static br.unisul.Directions.RIGHT;
+import static br.unisul.Directions.UP;
 
-    protected static final int DOWN = 0;
-    protected static final int RIGHT = 1;
-    protected static final int UP = 2;
-    protected static final int LEFT = 3;
+public abstract class Actor {
 
     private static final int SPEED = 2;
     private static final int COUNTER_MAX = 10;
@@ -44,7 +44,7 @@ public abstract class Actor {
         moved = false;
     }
 
-    protected void move(int dir) {
+    public void move(int dir) {
         direction = dir;
         if (direction == UP) {
             sprite.setY(sprite.getY() + SPEED);
@@ -84,6 +84,14 @@ public abstract class Actor {
     public void draw() {
         sprite.setRegion(step * spriteWidth, direction * spriteHeight, spriteWidth, spriteHeight);
         sprite.draw(game.batch);
+    }
+
+    public float getX() {
+        return sprite.getX();
+    }
+
+    public float getY() {
+        return sprite.getY();
     }
 
 }
